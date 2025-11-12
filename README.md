@@ -1,200 +1,178 @@
-# GitHub Profile Language Analytics
+Automatically generate visualizations of your programming language usage across all your GitHub repositories.
 
-A comprehensive tool to analyze language usage across all your GitHub repositories (public and private) with detailed leaderboards.
+## Why This Action?
 
-## Features
+Building on other tools, this runs "locally" as an action, allowing quicker refreshes, and works far better for those who enjoy a wide range of languages
 
-- Analyzes all repositories owned by you (both public and private)
-- Multiple visualization types with **modern, sleek design**:
-  - **Leaderboard**: Horizontal bars with badges and repo breakdowns
-  - **Bar Charts**: Vertical and horizontal bar charts with icons
-  - **Pie/Donut Charts**: Circular visualizations with badge legends
-- Three metric types for each visualization:
-  - By Repository Count: How many repos use each language
-  - By Lines of Code: Total lines written in each language
-  - By Weighted Score: Equal weighting of repo count and line count
-- **Modern visual styling**:
-  - Subtle drop shadows and depth effects
-  - Clean, minimalist design with professional typography
-  - Language badge icons integrated into all chart types
-  - Smooth gradients and polished aesthetics
-  - High contrast, readable text with stroke outlines
-- CLI arguments for flexible chart generation
-- Excludes specified repositories via configuration
-- Option to exclude forked repositories
-- Filter out specific languages (defaults: HTML, CSS)
-- Privacy option to hide/aggregate private repository names in visualizations
-- Generates high-quality PNG visualizations (300 DPI)
-- Badge images are cached locally for faster subsequent runs
-- Supports 118+ programming languages with custom colors and logos
+- Analyzes ALL your languages, not just the top 6
+- Works with both public and private repositories
+- Highly configurable to match your needs
+- Generates multiple visualization types with modern design
 
 ## Setup
 
-1. Install dependencies:
+### 1. Create a Personal Access Token
 
-```bash
-pip install -r requirements.txt
+The action requires a Personal Access Token (PAT) to access your repositories.
+
+1. Go to https://github.com/settings/tokens
+2. Click "Generate new token (classic)"
+3. Name: `Language Stats`
+4. Select scope: `repo` (Full control of private repositories)
+5. Click "Generate token" and copy it
+
+### 2. Add Token as Secret
+
+1. Go to your repository Settings
+2. Secrets and variables → Actions
+3. Click "New repository secret"
+4. Name: `STATS_TOKEN`
+5. Value: Paste your PAT
+6. Click "Add secret"
+
+### 3. Create Workflow
+
+Create `.github/workflows/stats.yml`:
+
+```yaml
+name: Update Language Statistics
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: stefvuck/github-profile-language-analytics@v1
+        with:
+          github_token: ${{ secrets.STATS_TOKEN }}
+          visualization_types: "leaderboard"
+          output_path: "stats"
 ```
 
-2. Create GitHub Personal Access Token:
-   - Go to GitHub Settings > Developer settings > Personal access tokens > Tokens (classic)
-   - Generate new token with `repo` scope (to access private repos)
-   - Copy the token
+### 4. Add to README
 
-3. Configure the tool:
-
-```bash
-cp config.example.json config.json
+```markdown
+![Language Stats](stats/leaderboard_by_lines.png)
 ```
 
-Edit `config.json` and add:
+## Examples
 
-- Your GitHub token
-- Any repositories you want to exclude (optional)
+### Leaderboard with Breakdown
 
-## Usage
+Shows top languages with contribution breakdown from your top repositories.
 
-### Basic Usage
+**Light Mode:**
+![Leaderboard Light](examples/light-filtered/leaderboard_by_lines.png)
 
-Run the analysis with default settings (leaderboard style):
+**Dark Mode:**
+![Leaderboard Dark](examples/dark-filtered/leaderboard_by_lines.png)
 
-```bash
-python main.py
-```
+### Bar Charts
 
-### CLI Options
+**Light Mode:**
+![Bar Chart Light](examples/light-filtered/bar_by_repos.png)
 
-```bash
-python main.py --types leaderboard bar pie donut --output my_output
-```
+**Dark Mode:**
+![Bar Chart Dark](examples/dark-filtered/bar_by_repos.png)
 
-**Available Options:**
+### Pie Charts
 
-- `--types`: Visualization types to generate (can specify multiple)
-  - `leaderboard`: Horizontal bars with language badges and repo breakdowns (default)
-  - `bar`: Vertical bar charts (top 15 languages)
-  - `horizontal-bar`: Simple horizontal bars without badges (top 20 languages)
-  - `pie`: Pie charts (top 10 languages + "Other")
-  - `donut`: Donut charts (top 10 languages + "Other")
+**Light Mode:**
+![Pie Chart Light](examples/light-filtered/pie_by_weighted.png)
 
-- `--config`: Path to config file (default: `config.json`)
+**Dark Mode:**
+![Pie Chart Dark](examples/dark-filtered/pie_by_weighted.png)
 
-- `--output`: Output directory for visualizations (default: `output`)
+### Donut Charts
 
-### Examples
+**Light Mode:**
+![Donut Chart Light](examples/light-filtered/donut_by_weighted.png)
 
-Generate all visualization types:
+**Dark Mode:**
+![Donut Chart Dark](examples/dark-filtered/donut_by_weighted.png)
 
-```bash
-python main.py --types leaderboard bar horizontal-bar pie donut
-```
+### With vs Without Language Filtering
 
-Generate only pie and donut charts:
+**Excluding HTML/CSS (Filtered by Lines):**
+![Filtered](examples/light-filtered/leaderboard_by_lines.png)
 
-```bash
-python main.py --types pie donut
-```
-
-Use custom config and output directory:
-
-```bash
-python main.py --config my_config.json --output my_charts
-```
-
-### Output Files
-
-The tool generates files based on selected visualization types:
-
-**Leaderboard** (with badges):
-
-- `leaderboard_by_repos.png` - Sorted by repository count
-- `leaderboard_by_lines.png` - Sorted by lines of code (with top 5 contributing repos)
-- `leaderboard_by_weighted.png` - Sorted by weighted score
-
-**Vertical Bar Charts**:
-
-- `bar_by_repos.png`
-- `bar_by_lines.png`
-- `bar_by_weighted.png`
-
-**Horizontal Bar Charts**:
-
-- `horizontal_bar_by_repos.png`
-- `horizontal_bar_by_lines.png`
-- `horizontal_bar_by_weighted.png`
-
-**Pie Charts**:
-
-- `pie_by_repos.png`
-- `pie_by_lines.png`
-- `pie_by_weighted.png`
-
-**Donut Charts**:
-
-- `donut_by_repos.png`
-- `donut_by_lines.png`
-- `donut_by_weighted.png`
+**Including All Languages (by Lines):**
+![All Languages](examples/light-all/leaderboard_by_lines.png)
 
 ## Configuration
 
-Example `config.json`:
+| Input                 | Description                             | Default                      |
+| --------------------- | --------------------------------------- | ---------------------------- |
+| `github_token`        | Personal Access Token with `repo` scope | Required                     |
+| `visualization_types` | Types to generate                       | `leaderboard bar pie`        |
+| `output_path`         | Output directory                        | `github-stats`               |
+| `exclude_repos`       | Comma-separated repos to skip           | `''`                         |
+| `include_forks`       | Include forked repos                    | `false`                      |
+| `exclude_languages`   | Comma-separated languages to skip       | `HTML,CSS`                   |
+| `top_repos_count`     | Repos shown in leaderboard              | `5`                          |
+| `commit_message`      | Git commit message                      | `Update language statistics` |
+| `dark_mode`           | Enable dark mode theme                  | `false`                      |
 
-```json
-{
-  "github_token": "ghp_your_token_here",
-  "excluded_repos": ["test-repo", "old-project"],
-  "include_forks": false,
-  "excluded_languages": ["HTML", "CSS"],
-  "hide_private_repo_names": false
-}
+## Visualization Types
+
+- `leaderboard` - Horizontal bars with badges and top contributing repos
+- `bar` - Vertical bars (top 12 languages)
+- `horizontal-bar` - Horizontal bars (top 15 languages)
+- `pie` - Pie chart (top 8 + "Other")
+- `donut` - Donut chart (top 8 + "Other")
+
+## Output Files
+
+Each type generates 3 files:
+
+- `*_by_repos.png` - Sorted by repository count
+- `*_by_lines.png` - Sorted by lines of code
+- `*_by_weighted.png` - Balanced ranking
+
+## Advanced Configuration
+
+```yaml
+- uses: stefvuck/github-profile-language-analytics@v1
+  with:
+    github_token: ${{ secrets.STATS_TOKEN }}
+    visualization_types: "leaderboard bar pie donut"
+    output_path: "language-stats"
+    exclude_repos: "test-repo,old-project"
+    include_forks: "true"
+    exclude_languages: "HTML,CSS,Markdown"
+    top_repos_count: "10"
+    dark_mode: "true"
 ```
 
-Configuration options:
+## Troubleshooting
 
-- `github_token`: Your GitHub Personal Access Token (required)
-- `excluded_repos`: List of repository names to exclude from analysis (optional)
-- `include_forks`: Set to `true` to include forked repositories, `false` to exclude them (default: false)
-- `excluded_languages`: List of languages to exclude from analysis (default: ["HTML", "CSS"])
-- `hide_private_repo_names`: Set to `true` to aggregate private repos as "[N Private Repos]" in breakdown visualizations (default: false)
+### 403 Forbidden Error
 
-## Language Configuration
+If you see `Resource not accessible by integration`, your token doesn't have the required permissions.
 
-The tool uses `languages.json` to configure language colors and badge icons for 100+ programming languages. This file contains:
+**Solution**: Create a Personal Access Token with `repo` scope (see Setup above).
 
-- `color`: GitHub-style language color (hex format)
-- `badge_color`: Color for shields.io badges (hex without #)
-- `logo`: Simple Icons slug for the language logo (optional)
+### Images Not Committing
 
-**Extending language support:**
-To add or customize a language, edit `languages.json`:
+Ensure your workflow has `contents: write` permission and the output directory is not in `.gitignore`.
 
-```json
-{
-  "YourLanguage": {
-    "color": "#FF5733",
-    "badge_color": "FF5733",
-    "logo": "yourlanguage"
-  }
-}
+## Local Development
+
+```bash
+pip install -r requirements.txt
+cp config.example.json config.json
+# Edit config.json with your token
+python main.py --types leaderboard bar pie --dark-mode
 ```
 
-Languages not in the config will automatically use a fallback gray badge with the language name.
+## License
 
-## How It Works
-
-- **Repository Count**: Counts how many repositories use each language
-- **Lines of Code**: Sums up the total lines of code per language across all repos
-- **Weighted Score**: Normalizes both metrics (0-1 scale) and averages them for balanced ranking
-
-## Output
-
-All visualizations are saved as high-resolution PNGs (300 DPI) with modern, polished styling:
-
-- **Color-coded visualizations** matching GitHub's language colors
-- **Language badge icons** integrated into all chart types (not just leaderboards!)
-- **Formatted numbers** (K/M notation for large values)
-- **Chart-specific features**:
-  - **Leaderboards**: Include badges and top contributing repos breakdown (top 5 repos per language)
-  - **Bar Charts**: Badges below vertical bars or on y-axis for horizontal (top 15-20 languages)
-  - **Pie/Donut Charts**: Badge legend on the right side (top 10 languages + "Other")
-- Perfect for portfolios, presentations, and README files
+MIT
