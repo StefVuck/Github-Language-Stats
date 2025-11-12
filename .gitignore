@@ -26,6 +26,7 @@ ENV/
 env.bak/
 venv.bak/
 *.png
+!examples/**/*.png
 output/
 .DS_Store
 config.json
