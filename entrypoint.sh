@@ -69,6 +69,9 @@ echo "Configuration created"
 echo "Visualization types: $VISUALIZATION_TYPES"
 echo "Output path: $OUTPUT_PATH"
 
+# Pull latest before generating so the subsequent push is not rejected
+git pull --rebase
+
 # Create output directory in workspace
 mkdir -p "$OUTPUT_PATH"
 
@@ -87,7 +90,6 @@ if [ -n "$(git status --porcelain)" ]; then
     echo "Committing changes..."
     git add "$OUTPUT_PATH"/*.png
     git commit -m "$COMMIT_MESSAGE"
-    git pull --rebase
     git push
     echo "Changes committed and pushed"
 else
