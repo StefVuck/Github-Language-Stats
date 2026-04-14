@@ -56,7 +56,7 @@ fi
 # Create config.json
 cat >/action/config.json <<EOF
 {
-  "github_token": "$GITHUB_TOKEN",
+  "github_token": "$STATS_TOKEN",
   "excluded_repos": $EXCLUDED_REPOS_JSON,
   "include_forks": $INCLUDE_FORKS_BOOL,
   "excluded_languages": $EXCLUDED_LANGS_JSON,

@@ -60,7 +60,7 @@ runs:
   using: "docker"
   image: "Dockerfile"
   env:
-    GITHUB_TOKEN: ${{ inputs.github_token }}
+    STATS_TOKEN: ${{ inputs.github_token }}
     VISUALIZATION_TYPES: ${{ inputs.visualization_types }}
     OUTPUT_PATH: ${{ inputs.output_path }}
     EXCLUDE_REPOS: ${{ inputs.exclude_repos }}
