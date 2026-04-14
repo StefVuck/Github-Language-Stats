@@ -2,508 +2,604 @@
   "Python": {
     "color": "#3572A5",
     "badge_color": "3776AB",
-    "logo": "python"
+    "logo": "python",
+    "extensions": [".py", ".pyw", ".pyi"]
   },
   "JavaScript": {
     "color": "#f1e05a",
     "badge_color": "F7DF1E",
-    "logo": "javascript"
+    "logo": "javascript",
+    "extensions": [".js", ".mjs", ".cjs", ".jsx"]
   },
   "TypeScript": {
     "color": "#2b7489",
     "badge_color": "3178C6",
-    "logo": "typescript"
+    "logo": "typescript",
+    "extensions": [".ts", ".tsx", ".mts"]
   },
   "Java": {
     "color": "#b07219",
     "badge_color": "ED8B00",
-    "logo": "openjdk"
+    "logo": "openjdk",
+    "extensions": [".java"]
   },
   "C++": {
     "color": "#f34b7d",
     "badge_color": "00599C",
-    "logo": "cplusplus"
+    "logo": "cplusplus",
+    "extensions": [".cpp", ".cc", ".cxx", ".hpp", ".hh", ".hxx"]
   },
   "C": {
     "color": "#555555",
     "badge_color": "A8B9CC",
-    "logo": "c"
+    "logo": "c",
+    "extensions": [".c", ".h"]
   },
   "C#": {
     "color": "#178600",
     "badge_color": "239120",
-    "logo": "csharp"
+    "logo": "csharp",
+    "extensions": [".cs"]
   },
   "Go": {
     "color": "#00ADD8",
     "badge_color": "00ADD8",
-    "logo": "go"
+    "logo": "go",
+    "extensions": [".go"]
   },
   "Rust": {
     "color": "#dea584",
     "badge_color": "000000",
-    "logo": "rust"
+    "logo": "rust",
+    "extensions": [".rs"]
   },
   "Ruby": {
     "color": "#701516",
     "badge_color": "CC342D",
-    "logo": "ruby"
+    "logo": "ruby",
+    "extensions": [".rb", ".rake", ".gemspec"],
+    "filenames": ["Rakefile", "Gemfile"]
   },
   "PHP": {
     "color": "#4F5D95",
     "badge_color": "777BB4",
-    "logo": "php"
+    "logo": "php",
+    "extensions": [".php", ".php3", ".php4", ".php5"]
   },
   "Swift": {
     "color": "#ffac45",
     "badge_color": "FA7343",
-    "logo": "swift"
+    "logo": "swift",
+    "extensions": [".swift"]
   },
   "Kotlin": {
     "color": "#A97BFF",
     "badge_color": "7F52FF",
-    "logo": "kotlin"
+    "logo": "kotlin",
+    "extensions": [".kt", ".kts"]
   },
   "Dart": {
     "color": "#00B4AB",
     "badge_color": "0175C2",
-    "logo": "dart"
+    "logo": "dart",
+    "extensions": [".dart"]
   },
   "Shell": {
     "color": "#89e051",
     "badge_color": "89E051",
-    "logo": "gnubash"
+    "logo": "gnubash",
+    "extensions": [".sh", ".bash", ".zsh", ".fish"]
   },
   "HTML": {
     "color": "#e34c26",
     "badge_color": "E34F26",
-    "logo": "html5"
+    "logo": "html5",
+    "extensions": [".html", ".htm"]
   },
   "CSS": {
     "color": "#563d7c",
     "badge_color": "639",
-    "logo": "css"
+    "logo": "css",
+    "extensions": [".css"]
   },
   "Scala": {
     "color": "#c22d40",
     "badge_color": "DC322F",
-    "logo": "scala"
+    "logo": "scala",
+    "extensions": [".scala", ".sc"]
   },
   "R": {
     "color": "#198CE7",
     "badge_color": "276DC3",
-    "logo": "r"
+    "logo": "r",
+    "extensions": [".r"]
   },
   "Objective-C": {
     "color": "#438eff",
     "badge_color": "438EFF",
-    "logo": "apple"
+    "logo": "apple",
+    "extensions": [".m", ".mm"]
   },
   "Vue": {
     "color": "#41b883",
     "badge_color": "4FC08D",
-    "logo": "vuedotjs"
+    "logo": "vuedotjs",
+    "extensions": [".vue"]
   },
   "Jupyter Notebook": {
     "color": "#DA5B0B",
     "badge_color": "F37626",
-    "logo": "jupyter"
-  },
-  "Jupyter": {
-    "color": "#DA5B0B",
-    "badge_color": "FFFFFF",
-    "logo": "jupyter"
+    "logo": "jupyter",
+    "extensions": [".ipynb"]
   },
   "Lua": {
     "color": "#000080",
     "badge_color": "2C2D72",
-    "logo": "lua"
+    "logo": "lua",
+    "extensions": [".lua"]
   },
   "Perl": {
     "color": "#0298c3",
     "badge_color": "39457E",
-    "logo": "perl"
+    "logo": "perl",
+    "extensions": [".pl", ".pm"]
   },
   "Haskell": {
     "color": "#5e5086",
     "badge_color": "5E5086",
-    "logo": "haskell"
+    "logo": "haskell",
+    "extensions": [".hs", ".lhs"]
   },
   "Elixir": {
     "color": "#6e4a7e",
     "badge_color": "4B275F",
-    "logo": "elixir"
+    "logo": "elixir",
+    "extensions": [".ex", ".exs"]
   },
   "Clojure": {
     "color": "#db5855",
     "badge_color": "5881D8",
-    "logo": "clojure"
-  },
-  "Vim script": {
-    "color": "#199f4b",
-    "badge_color": "019733",
-    "logo": "vim"
-  },
-  "React": {
-    "color": "#61DAFB",
-    "badge_color": "61DAFB",
-    "logo": "react"
-  },
-  "Node.js": {
-    "color": "#339933",
-    "badge_color": "339933",
-    "logo": "nodedotjs"
-  },
-  "SQL": {
-    "color": "#e38c00",
-    "badge_color": "4479A1",
-    "logo": "postgresql"
-  },
-  "SCSS": {
-    "color": "#c6538c",
-    "badge_color": "CC6699",
-    "logo": "sass"
-  },
-  "Sass": {
-    "color": "#a53b70",
-    "badge_color": "CC6699",
-    "logo": "sass"
-  },
-  "MATLAB": {
-    "color": "#e16737",
-    "badge_color": "E16737",
-    "logo": "matlab"
-  },
-  "Groovy": {
-    "color": "#4298b8",
-    "badge_color": "4298B8",
-    "logo": "apachegroovy"
-  },
-  "PowerShell": {
-    "color": "#012456",
-    "badge_color": "012456",
-    "logo": "powershell"
-  },
-  "CoffeeScript": {
-    "color": "#244776",
-    "badge_color": "244776",
-    "logo": "coffeescript"
+    "logo": "clojure",
+    "extensions": [".clj", ".cljs", ".cljc"]
   },
   "Vim Script": {
     "color": "#199f4b",
     "badge_color": "019733",
-    "logo": "vim"
+    "logo": "vim",
+    "extensions": [".vim"],
+    "filenames": [".vimrc", ".gvimrc"]
   },
-  "Emacs Lisp": {
-    "color": "#c065db",
-    "badge_color": "7F5AB6",
-    "logo": "gnuemacs"
+  "SQL": {
+    "color": "#e38c00",
+    "badge_color": "4479A1",
+    "logo": "postgresql",
+    "extensions": [".sql"]
   },
-  "OCaml": {
-    "color": "#3be133",
-    "badge_color": "EC6813",
-    "logo": "ocaml"
+  "SCSS": {
+    "color": "#c6538c",
+    "badge_color": "CC6699",
+    "logo": "sass",
+    "extensions": [".scss"]
   },
-  "F#": {
-    "color": "#b845fc",
-    "badge_color": "378BBA",
-    "logo": "fsharp"
+  "Sass": {
+    "color": "#a53b70",
+    "badge_color": "CC6699",
+    "logo": "sass",
+    "extensions": [".sass"]
   },
-  "Erlang": {
-    "color": "#B83998",
-    "badge_color": "A90533",
-    "logo": "erlang"
-  },
-  "Assembly": {
-    "color": "#6E4C13",
-    "badge_color": "6E4C13",
-    "logo": "assemblyscript"
-  },
-  "Pascal": {
-    "color": "#E3F171",
-    "badge_color": "E3F171"
-  },
-  "Fortran": {
-    "color": "#4d41b1",
-    "badge_color": "734F96",
-    "logo": "fortran"
-  },
-  "COBOL": {
-    "color": "#555555",
-    "badge_color": "555555"
-  },
-  "Racket": {
-    "color": "#3c5caa",
-    "badge_color": "22228B",
-    "logo": "racket"
-  },
-  "Scheme": {
-    "color": "#1e4aec",
-    "badge_color": "1E4AEC"
-  },
-  "Common Lisp": {
-    "color": "#3fb68b",
-    "badge_color": "3FB68B"
-  },
-  "Julia": {
-    "color": "#a270ba",
-    "badge_color": "9558B2",
-    "logo": "julia"
-  },
-  "Zig": {
-    "color": "#ec915c",
-    "badge_color": "F7A41D",
-    "logo": "zig"
-  },
-  "Crystal": {
-    "color": "#000100",
-    "badge_color": "000100",
-    "logo": "crystal"
-  },
-  "Nim": {
-    "color": "#ffc200",
-    "badge_color": "FFE953",
-    "logo": "nim"
-  },
-  "D": {
-    "color": "#ba595e",
-    "badge_color": "BA595E",
-    "logo": "dlang"
-  },
-  "Solidity": {
-    "color": "#AA6746",
-    "badge_color": "363636",
-    "logo": "solidity"
-  },
-  "V": {
-    "color": "#4f87c4",
-    "badge_color": "5D87BF",
-    "logo": "v"
-  },
-  "Vala": {
-    "color": "#fbe5cd",
-    "badge_color": "A56DE2"
-  },
-  "Ada": {
-    "color": "#02f88c",
-    "badge_color": "02F88C"
-  },
-  "VHDL": {
-    "color": "#adb2cb",
-    "badge_color": "543978"
-  },
-  "Verilog": {
-    "color": "#b2b7f8",
-    "badge_color": "B2B7F8"
-  },
-  "SystemVerilog": {
-    "color": "#DAE1C2",
-    "badge_color": "DAE1C2"
-  },
-  "Makefile": {
-    "color": "#427819",
-    "badge_color": "427819"
-  },
-  "CMake": {
-    "color": "#DA3434",
-    "badge_color": "064F8C",
-    "logo": "cmake"
-  },
-  "Dockerfile": {
-    "color": "#384d54",
-    "badge_color": "2496ED",
-    "logo": "docker"
-  },
-  "YAML": {
-    "color": "#cb171e",
-    "badge_color": "CB171E",
-    "logo": "yaml"
-  },
-  "TOML": {
-    "color": "#9c4221",
-    "badge_color": "9C4221",
-    "logo": "toml"
-  },
-  "JSON": {
-    "color": "#292929",
-    "badge_color": "000000",
-    "logo": "json"
-  },
-  "XML": {
-    "color": "#0060ac",
-    "badge_color": "767C52",
-    "logo": "xml"
-  },
-  "Markdown": {
-    "color": "#083fa1",
-    "badge_color": "000000",
-    "logo": "markdown"
-  },
-  "TeX": {
-    "color": "#3D6117",
-    "badge_color": "3D6117",
-    "logo": "latex"
-  },
-  "Batchfile": {
-    "color": "#C1F12E",
-    "badge_color": "C1F12E"
-  },
-  "Hack": {
-    "color": "#878787",
-    "badge_color": "878787",
-    "logo": "hacklang"
-  },
-  "Apex": {
-    "color": "#1797c0",
-    "badge_color": "1797C0"
+  "MATLAB": {
+    "color": "#e16737",
+    "badge_color": "E16737",
+    "logo": "matlab",
+    "extensions": [".mlx"]
   },
   "Groovy": {
     "color": "#4298b8",
     "badge_color": "4298B8",
-    "logo": "apachegroovy"
+    "logo": "apachegroovy",
+    "extensions": [".groovy", ".gradle"]
+  },
+  "PowerShell": {
+    "color": "#012456",
+    "badge_color": "012456",
+    "logo": "powershell",
+    "extensions": [".ps1", ".psm1", ".psd1"]
+  },
+  "CoffeeScript": {
+    "color": "#244776",
+    "badge_color": "244776",
+    "logo": "coffeescript",
+    "extensions": [".coffee"]
+  },
+  "Emacs Lisp": {
+    "color": "#c065db",
+    "badge_color": "7F5AB6",
+    "logo": "gnuemacs",
+    "extensions": [".el"]
+  },
+  "OCaml": {
+    "color": "#3be133",
+    "badge_color": "EC6813",
+    "logo": "ocaml",
+    "extensions": [".ml", ".mli"]
+  },
+  "F#": {
+    "color": "#b845fc",
+    "badge_color": "378BBA",
+    "logo": "fsharp",
+    "extensions": [".fs", ".fsi", ".fsx"]
+  },
+  "Erlang": {
+    "color": "#B83998",
+    "badge_color": "A90533",
+    "logo": "erlang",
+    "extensions": [".erl", ".hrl"]
+  },
+  "Assembly": {
+    "color": "#6E4C13",
+    "badge_color": "6E4C13",
+    "logo": "assemblyscript",
+    "extensions": [".asm", ".s"]
+  },
+  "Pascal": {
+    "color": "#E3F171",
+    "badge_color": "E3F171",
+    "extensions": [".pas", ".pp"]
+  },
+  "Fortran": {
+    "color": "#4d41b1",
+    "badge_color": "734F96",
+    "logo": "fortran",
+    "extensions": [".f90", ".f95", ".f03", ".for"]
+  },
+  "COBOL": {
+    "color": "#555555",
+    "badge_color": "555555",
+    "extensions": [".cob", ".cbl", ".cpy"]
+  },
+  "Racket": {
+    "color": "#3c5caa",
+    "badge_color": "22228B",
+    "logo": "racket",
+    "extensions": [".rkt"]
+  },
+  "Scheme": {
+    "color": "#1e4aec",
+    "badge_color": "1E4AEC",
+    "extensions": [".scm", ".ss"]
+  },
+  "Common Lisp": {
+    "color": "#3fb68b",
+    "badge_color": "3FB68B",
+    "extensions": [".lisp", ".cl"]
+  },
+  "Julia": {
+    "color": "#a270ba",
+    "badge_color": "9558B2",
+    "logo": "julia",
+    "extensions": [".jl"]
+  },
+  "Zig": {
+    "color": "#ec915c",
+    "badge_color": "F7A41D",
+    "logo": "zig",
+    "extensions": [".zig"]
+  },
+  "Crystal": {
+    "color": "#000100",
+    "badge_color": "000100",
+    "logo": "crystal",
+    "extensions": [".cr"]
+  },
+  "Nim": {
+    "color": "#ffc200",
+    "badge_color": "FFE953",
+    "logo": "nim",
+    "extensions": [".nim"]
+  },
+  "D": {
+    "color": "#ba595e",
+    "badge_color": "BA595E",
+    "logo": "dlang",
+    "extensions": [".d"]
+  },
+  "Solidity": {
+    "color": "#AA6746",
+    "badge_color": "363636",
+    "logo": "solidity",
+    "extensions": [".sol"]
+  },
+  "Vala": {
+    "color": "#fbe5cd",
+    "badge_color": "A56DE2",
+    "extensions": [".vala"]
+  },
+  "Ada": {
+    "color": "#02f88c",
+    "badge_color": "02F88C",
+    "extensions": [".adb", ".ads"]
+  },
+  "VHDL": {
+    "color": "#adb2cb",
+    "badge_color": "543978",
+    "extensions": [".vhd", ".vhdl"]
+  },
+  "Verilog": {
+    "color": "#b2b7f8",
+    "badge_color": "B2B7F8",
+    "extensions": [".v", ".vh"]
+  },
+  "SystemVerilog": {
+    "color": "#DAE1C2",
+    "badge_color": "DAE1C2",
+    "extensions": [".sv", ".svh"]
+  },
+  "Makefile": {
+    "color": "#427819",
+    "badge_color": "427819",
+    "extensions": [".mk", ".mak"],
+    "filenames": ["Makefile", "GNUmakefile"]
+  },
+  "CMake": {
+    "color": "#DA3434",
+    "badge_color": "064F8C",
+    "logo": "cmake",
+    "extensions": [".cmake"],
+    "filenames": ["CMakeLists.txt"]
+  },
+  "Dockerfile": {
+    "color": "#384d54",
+    "badge_color": "2496ED",
+    "logo": "docker",
+    "filenames": ["Dockerfile"]
+  },
+  "YAML": {
+    "color": "#cb171e",
+    "badge_color": "CB171E",
+    "logo": "yaml",
+    "extensions": [".yaml", ".yml"]
+  },
+  "TOML": {
+    "color": "#9c4221",
+    "badge_color": "9C4221",
+    "logo": "toml",
+    "extensions": [".toml"]
+  },
+  "JSON": {
+    "color": "#292929",
+    "badge_color": "000000",
+    "logo": "json",
+    "extensions": [".json"]
+  },
+  "XML": {
+    "color": "#0060ac",
+    "badge_color": "767C52",
+    "logo": "xml",
+    "extensions": [".xml"]
+  },
+  "Markdown": {
+    "color": "#083fa1",
+    "badge_color": "000000",
+    "logo": "markdown",
+    "extensions": [".md", ".markdown"]
+  },
+  "TeX": {
+    "color": "#3D6117",
+    "badge_color": "3D6117",
+    "logo": "latex",
+    "extensions": [".tex", ".sty", ".cls"]
+  },
+  "Batchfile": {
+    "color": "#C1F12E",
+    "badge_color": "C1F12E",
+    "extensions": [".bat", ".cmd"]
+  },
+  "Hack": {
+    "color": "#878787",
+    "badge_color": "878787",
+    "logo": "hacklang",
+    "extensions": [".hack"]
+  },
+  "Apex": {
+    "color": "#1797c0",
+    "badge_color": "1797C0",
+    "extensions": [".apex", ".trigger"]
   },
   "AutoHotkey": {
     "color": "#6594b9",
-    "badge_color": "6594B9"
+    "badge_color": "6594B9",
+    "extensions": [".ahk"]
   },
   "ActionScript": {
     "color": "#882B0F",
-    "badge_color": "882B0F"
+    "badge_color": "882B0F",
+    "extensions": [".as"]
   },
   "Visual Basic": {
     "color": "#945db7",
-    "badge_color": "945DB7"
+    "badge_color": "945DB7",
+    "extensions": [".vb"]
   },
   "VBA": {
     "color": "#867db1",
-    "badge_color": "867DB1"
+    "badge_color": "867DB1",
+    "extensions": [".bas", ".vba"]
   },
   "Tcl": {
     "color": "#e4cc98",
-    "badge_color": "E4CC98"
+    "badge_color": "E4CC98",
+    "extensions": [".tcl"]
   },
   "Smalltalk": {
     "color": "#596706",
-    "badge_color": "596706"
+    "badge_color": "596706",
+    "extensions": [".st"]
   },
   "Prolog": {
     "color": "#74283c",
-    "badge_color": "74283C"
+    "badge_color": "74283C",
+    "extensions": [".pro"]
   },
   "ABAP": {
     "color": "#E8274B",
-    "badge_color": "E8274B"
+    "badge_color": "E8274B",
+    "extensions": [".abap"]
   },
   "Elm": {
     "color": "#60B5CC",
     "badge_color": "60B5CC",
-    "logo": "elm"
+    "logo": "elm",
+    "extensions": [".elm"]
   },
   "PureScript": {
     "color": "#1D222D",
     "badge_color": "1D222D",
-    "logo": "purescript"
+    "logo": "purescript",
+    "extensions": [".purs"]
   },
   "ReScript": {
     "color": "#ed5051",
     "badge_color": "E34C4C",
-    "logo": "rescript"
+    "logo": "rescript",
+    "extensions": [".res", ".resi"]
   },
   "Reason": {
     "color": "#ff5847",
-    "badge_color": "DD5B52"
+    "badge_color": "DD5B52",
+    "extensions": [".re", ".rei"]
   },
   "WebAssembly": {
     "color": "#04133b",
     "badge_color": "654FF0",
-    "logo": "webassembly"
+    "logo": "webassembly",
+    "extensions": [".wat"]
   },
   "GLSL": {
     "color": "#5686a5",
-    "badge_color": "5686A5"
+    "badge_color": "5686A5",
+    "extensions": [".glsl", ".vert", ".frag"]
   },
   "ShaderLab": {
     "color": "#222c37",
-    "badge_color": "222C37"
+    "badge_color": "222C37",
+    "extensions": [".shader"]
   },
   "Processing": {
     "color": "#0096D8",
     "badge_color": "0096D8",
-    "logo": "processingfoundation"
+    "logo": "processingfoundation",
+    "extensions": [".pde"]
   },
   "Arduino": {
     "color": "#bd79d1",
     "badge_color": "00979D",
-    "logo": "arduino"
+    "logo": "arduino",
+    "extensions": [".ino"]
   },
   "GDScript": {
     "color": "#355570",
     "badge_color": "355570",
-    "logo": "godotengine"
+    "logo": "godotengine",
+    "extensions": [".gd"]
   },
   "Ballerina": {
     "color": "#FF5000",
-    "badge_color": "FF5000"
+    "badge_color": "FF5000",
+    "extensions": [".bal"]
   },
   "Svelte": {
     "color": "#ff3e00",
     "badge_color": "FF3E00",
-    "logo": "svelte"
+    "logo": "svelte",
+    "extensions": [".svelte"]
   },
   "Less": {
     "color": "#1d365d",
     "badge_color": "1D365D",
-    "logo": "less"
+    "logo": "less",
+    "extensions": [".less"]
   },
   "Stylus": {
     "color": "#ff6347",
     "badge_color": "FF6347",
-    "logo": "stylus"
-  },
-  "AssemblyScript": {
-    "color": "#007AAC",
-    "badge_color": "007AAC",
-    "logo": "assemblyscript"
-  },
-  "Bash": {
-    "color": "#89e051",
-    "badge_color": "4EAA25",
-    "logo": "gnubash"
+    "logo": "stylus",
+    "extensions": [".styl"]
   },
   "EJS": {
     "color": "#a91e50",
     "badge_color": "B4CA65",
-    "logo": "ejs"
+    "logo": "ejs",
+    "extensions": [".ejs"]
   },
   "Gleam": {
     "color": "#ffaff3",
     "badge_color": "FFAFF3",
-    "logo": "gleam"
+    "logo": "gleam",
+    "extensions": [".gleam"]
   },
   "Haxe": {
     "color": "#df7900",
     "badge_color": "EA8220",
-    "logo": "haxe"
-  },
-  "LaTeX": {
-    "color": "#3D6117",
-    "badge_color": "00A0A0",
-    "logo": "latex"
+    "logo": "haxe",
+    "extensions": [".hx"]
   },
   "MDX": {
     "color": "#fcb32c",
     "badge_color": "1B1F24",
-    "logo": "mdx"
+    "logo": "mdx",
+    "extensions": [".mdx"]
   },
   "Nix": {
     "color": "#7e7eff",
     "badge_color": "5277C3",
-    "logo": "nixos"
+    "logo": "nixos",
+    "extensions": [".nix"]
   },
   "Odin": {
     "color": "#60AFFE",
     "badge_color": "3882D2",
-    "logo": "odin"
+    "logo": "odin",
+    "extensions": [".odin"]
+  },
+  "DM": {
+    "color": "#447265",
+    "badge_color": "447265",
+    "extensions": [".dm"]
+  },
+  "CodeQL": {
+    "color": "#140f46",
+    "badge_color": "140F46",
+    "logo": "github",
+    "extensions": [".ql", ".qll"]
+  },
+  "MLIR": {
+    "color": "#5EC8DB",
+    "badge_color": "5EC8DB",
+    "logo": "llvm",
+    "extensions": [".mlir"]
+  },
+  "Bicep": {
+    "color": "#519ABA",
+    "badge_color": "0078D4",
+    "logo": "microsoftazure",
+    "extensions": [".bicep"]
+  },
+  "Cython": {
+    "color": "#fedf5b",
+    "badge_color": "FEDF5B",
+    "logo": "python",
+    "extensions": [".pyx", ".pxd"]
+  },
+  "GAP": {
+    "color": "#0000cc",
+    "badge_color": "0000CC",
+    "extensions": [".g", ".gi"]
+  },
+  "Puppet": {
+    "color": "#302B6D",
+    "badge_color": "FFAE1A",
+    "logo": "puppet",
+    "extensions": [".pp"]
   },
   "Scratch": {
     "color": "#4D97FF",
@@ -520,38 +616,15 @@
     "badge_color": "36C",
     "logo": "htmx"
   },
-  "DM": {
-    "color": "#447265",
-    "badge_color": "447265"
+  "React": {
+    "color": "#61DAFB",
+    "badge_color": "61DAFB",
+    "logo": "react"
   },
-  "CodeQL": {
-    "color": "#140f46",
-    "badge_color": "140F46",
-    "logo": "github"
-  },
-  "MLIR": {
-    "color": "#5EC8DB",
-    "badge_color": "5EC8DB",
-    "logo": "llvm"
-  },
-  "Bicep": {
-    "color": "#519ABA",
-    "badge_color": "0078D4",
-    "logo": "microsoftazure"
-  },
-  "Cython": {
-    "color": "#fedf5b",
-    "badge_color": "FEDF5B",
-    "logo": "python"
-  },
-  "GAP": {
-    "color": "#0000cc",
-    "badge_color": "0000CC"
-  },
-  "Puppet": {
-    "color": "#302B6D",
-    "badge_color": "FFAE1A",
-    "logo": "puppet"
+  "Node.js": {
+    "color": "#339933",
+    "badge_color": "339933",
+    "logo": "nodedotjs"
   },
   "JetBrains MPS": {
     "color": "#21D789",

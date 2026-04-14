@@ -1,91 +1,7 @@
+import json
 import os
 from collections import defaultdict
 from typing import Dict
-
-EXTENSION_MAP = {
-    '.py': 'Python', '.pyw': 'Python', '.pyi': 'Python',
-    '.js': 'JavaScript', '.mjs': 'JavaScript', '.cjs': 'JavaScript', '.jsx': 'JavaScript',
-    '.ts': 'TypeScript', '.tsx': 'TypeScript', '.mts': 'TypeScript',
-    '.java': 'Java',
-    '.cpp': 'C++', '.cc': 'C++', '.cxx': 'C++', '.hpp': 'C++', '.hh': 'C++', '.hxx': 'C++',
-    '.c': 'C', '.h': 'C',
-    '.cs': 'C#',
-    '.go': 'Go',
-    '.rs': 'Rust',
-    '.rb': 'Ruby', '.rake': 'Ruby', '.gemspec': 'Ruby',
-    '.php': 'PHP', '.php3': 'PHP', '.php4': 'PHP', '.php5': 'PHP',
-    '.swift': 'Swift',
-    '.kt': 'Kotlin', '.kts': 'Kotlin',
-    '.dart': 'Dart',
-    '.sh': 'Shell', '.bash': 'Shell', '.zsh': 'Shell', '.fish': 'Shell',
-    '.html': 'HTML', '.htm': 'HTML',
-    '.css': 'CSS',
-    '.scala': 'Scala', '.sc': 'Scala',
-    '.r': 'R',
-    '.m': 'Objective-C', '.mm': 'Objective-C',
-    '.vue': 'Vue',
-    '.ipynb': 'Jupyter Notebook',
-    '.lua': 'Lua',
-    '.pl': 'Perl', '.pm': 'Perl',
-    '.hs': 'Haskell', '.lhs': 'Haskell',
-    '.ex': 'Elixir', '.exs': 'Elixir',
-    '.clj': 'Clojure', '.cljs': 'Clojure', '.cljc': 'Clojure',
-    '.vim': 'Vim Script',
-    '.sql': 'SQL',
-    '.scss': 'SCSS',
-    '.sass': 'Sass',
-    '.groovy': 'Groovy', '.gradle': 'Groovy',
-    '.ps1': 'PowerShell', '.psm1': 'PowerShell', '.psd1': 'PowerShell',
-    '.coffee': 'CoffeeScript',
-    '.el': 'Emacs Lisp',
-    '.ml': 'OCaml', '.mli': 'OCaml',
-    '.fs': 'F#', '.fsi': 'F#', '.fsx': 'F#',
-    '.erl': 'Erlang', '.hrl': 'Erlang',
-    '.asm': 'Assembly',
-    '.pas': 'Pascal', '.pp': 'Pascal',
-    '.f90': 'Fortran', '.f95': 'Fortran', '.f03': 'Fortran', '.for': 'Fortran',
-    '.rkt': 'Racket',
-    '.scm': 'Scheme', '.ss': 'Scheme',
-    '.lisp': 'Common Lisp', '.cl': 'Common Lisp',
-    '.jl': 'Julia',
-    '.zig': 'Zig',
-    '.cr': 'Crystal',
-    '.nim': 'Nim',
-    '.d': 'D',
-    '.sol': 'Solidity',
-    '.mk': 'Makefile', '.mak': 'Makefile',
-    '.yaml': 'YAML', '.yml': 'YAML',
-    '.toml': 'TOML',
-    '.json': 'JSON',
-    '.xml': 'XML',
-    '.md': 'Markdown', '.markdown': 'Markdown',
-    '.tex': 'TeX', '.sty': 'TeX',
-    '.bat': 'Batchfile', '.cmd': 'Batchfile',
-    '.elm': 'Elm',
-    '.glsl': 'GLSL', '.vert': 'GLSL', '.frag': 'GLSL',
-    '.svelte': 'Svelte',
-    '.less': 'Less',
-    '.tcl': 'Tcl',
-    '.nix': 'Nix',
-    '.gd': 'GDScript',
-    '.hx': 'Haxe',
-    '.mdx': 'MDX',
-    '.vhd': 'VHDL', '.vhdl': 'VHDL',
-    '.sv': 'SystemVerilog', '.svh': 'SystemVerilog',
-    '.pyx': 'Cython', '.pxd': 'Cython',
-    '.adb': 'Ada', '.ads': 'Ada',
-    '.bicep': 'Bicep',
-    '.odin': 'Odin',
-    '.gleam': 'Gleam',
-    '.wat': 'WebAssembly',
-}
-
-FILENAME_MAP = {
-    'Makefile': 'Makefile',
-    'Dockerfile': 'Dockerfile',
-    'Rakefile': 'Ruby',
-    'Gemfile': 'Ruby',
-}
 
 SKIP_DIRS = {
     'node_modules', 'vendor', '.git', '__pycache__', 'dist', 'build',
@@ -93,12 +9,33 @@ SKIP_DIRS = {
     '.nuxt', 'coverage', '.cache', 'bower_components', 'output',
 }
 
-# Pure data/config/markup formats that are never meaningfully "code".
-# HTML, CSS etc. are intentionally excluded from this list — they are
-# legitimate languages that users may want to track.
+# Pure data/config/markup formats — never meaningfully "code".
+# HTML, CSS etc. are intentionally excluded from this list.
 NON_CODE_LANGUAGES = {
     'Markdown', 'MDX', 'YAML', 'TOML', 'JSON', 'XML', 'TeX', 'Batchfile',
 }
+
+
+def _build_maps():
+    languages_path = os.path.join(os.path.dirname(__file__), 'languages.json')
+    with open(languages_path, 'r', encoding='utf-8') as f:
+        languages = json.load(f)
+
+    ext_map = {}
+    filename_map = {}
+
+    for lang, config in languages.items():
+        for ext in config.get('extensions', []):
+            if ext not in ext_map:
+                ext_map[ext] = lang
+        for filename in config.get('filenames', []):
+            if filename not in filename_map:
+                filename_map[filename] = lang
+
+    return ext_map, filename_map
+
+
+EXTENSION_MAP, FILENAME_MAP = _build_maps()
 
 
 def _count_lines(filepath: str) -> int:
