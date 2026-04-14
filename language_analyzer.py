@@ -10,7 +10,7 @@ class LanguageAnalyzer:
         self.language_bytes = defaultdict(int)
         self.language_repos = defaultdict(set)
         self.language_repo_bytes = defaultdict(lambda: defaultdict(int))
-        self.excluded_languages = NON_CODE_LANGUAGES | set(excluded_languages or [])
+        self.excluded_languages = {l.lower() for l in NON_CODE_LANGUAGES | set(excluded_languages or [])}
         self.hide_private_repo_names = hide_private_repo_names
         self.private_repos = set()
 
@@ -20,7 +20,7 @@ class LanguageAnalyzer:
             self.private_repos.add(repo_name)
 
         for language, byte_count in languages.items():
-            if language not in self.excluded_languages:
+            if language.lower() not in self.excluded_languages:
                 self.language_bytes[language] += byte_count
                 self.language_repos[language].add(repo_name)
                 self.language_repo_bytes[language][repo_name] = byte_count

@@ -51,7 +51,7 @@ def _count_lines(filepath: str) -> int:
 
 def count_loc(repo_path: str, excluded_languages: set = None) -> Dict[str, int]:
     counts: Dict[str, int] = defaultdict(int)
-    skip = NON_CODE_LANGUAGES | (excluded_languages or set())
+    skip = {l.lower() for l in NON_CODE_LANGUAGES | (excluded_languages or set())}
 
     for root, dirs, files in os.walk(repo_path):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
@@ -62,7 +62,7 @@ def count_loc(repo_path: str, excluded_languages: set = None) -> Dict[str, int]:
                 ext = os.path.splitext(filename)[1].lower()
                 language = EXTENSION_MAP.get(ext)
 
-            if language is None or language in skip:
+            if language is None or language.lower() in skip:
                 continue
 
             filepath = os.path.join(root, filename)
