@@ -35,6 +35,11 @@ def parse_args():
         default=5,
         help='Number of top contributing repos to show in leaderboard breakdown'
     )
+    parser.add_argument(
+        '--loc',
+        action='store_true',
+        help='Count actual lines of code by shallow cloning repos (slower but accurate)'
+    )
     return parser.parse_args()
 
 
@@ -82,25 +87,32 @@ def main():
     print(f"\nAnalyzing language statistics ({lang_msg}{privacy_msg})...")
     analyzer = LanguageAnalyzer(excluded_languages, hide_private_repo_names)
 
+    get_stats = client.get_loc_stats if args.loc else client.get_language_stats
+    stat_label = "lines of code" if args.loc else "bytes"
+    print(f"  (counting {stat_label})")
+
     for i, repo in enumerate(repos, 1):
         privacy_indicator = " [Private]" if client.is_repo_private(repo) else ""
         print(f"  [{i}/{len(repos)}] Processing: {repo.name}{privacy_indicator}")
-        languages = client.get_language_stats(repo)
+        languages = get_stats(repo)
+        if args.loc and not languages:
+            print(f"    Warning: LOC count failed for {repo.name}, falling back to bytes")
+            languages = client.get_language_stats(repo)
         is_private = client.is_repo_private(repo)
         analyzer.add_repo_languages(repo.name, languages, is_private)
 
     print("\nGenerating leaderboards...")
     by_repos = analyzer.get_by_repos()
-    by_lines = analyzer.get_by_lines()
+    by_bytes = analyzer.get_by_bytes()
     by_weighted = analyzer.get_by_weighted()
 
     print("\nLanguage Statistics:")
     print(f"  Total languages: {len(analyzer.get_all_languages())}")
     top_by_repos = by_repos[0][0] if by_repos else 'N/A'
-    top_by_lines = by_lines[0][0] if by_lines else 'N/A'
+    top_by_bytes = by_bytes[0][0] if by_bytes else 'N/A'
     top_by_weighted = by_weighted[0][0] if by_weighted else 'N/A'
     print(f"  Top language by repos: {top_by_repos}")
-    print(f"  Top language by lines: {top_by_lines}")
+    print(f"  Top language by bytes: {top_by_bytes}")
     print(f"  Top language by weighted: {top_by_weighted}")
 
     print(f"\nCreating visualizations (types: {', '.join(args.types)})...")
@@ -109,22 +121,22 @@ def main():
     for viz_type in args.types:
         if viz_type == 'leaderboard':
             visualizer.create_all_leaderboards(
-                username, by_repos, by_lines, by_weighted,
+                username, by_repos, by_bytes, by_weighted,
                 get_breakdown_fn=analyzer.get_top_contributing_repos,
                 top_repos_count=args.top_repos
             )
         elif viz_type == 'bar':
             visualizer.create_bar_charts(
-                username, by_repos, by_lines, by_weighted
+                username, by_repos, by_bytes, by_weighted
             )
         elif viz_type == 'horizontal-bar':
             visualizer.create_horizontal_bar_charts(
-                username, by_repos, by_lines, by_weighted
+                username, by_repos, by_bytes, by_weighted
             )
         elif viz_type in ['pie', 'donut']:
             is_donut = viz_type == 'donut'
             visualizer.create_pie_charts(
-                username, by_repos, by_lines, by_weighted, donut=is_donut
+                username, by_repos, by_bytes, by_weighted, donut=is_donut
             )
 
     print("\n" + "=" * 50)

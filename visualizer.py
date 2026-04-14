@@ -309,7 +309,7 @@ class Visualizer:
         print(f"Saved: {output_path}")
 
     def create_all_leaderboards(self, username: str, by_repos: List[Tuple[str, int]],
-                               by_lines: List[Tuple[str, int]],
+                               by_bytes: List[Tuple[str, int]],
                                by_weighted: List[Tuple[str, float]],
                                get_breakdown_fn: Callable[[str], List[Tuple[str, int]]] = None,
                                top_repos_count: int = 5):
@@ -322,19 +322,19 @@ class Visualizer:
 
         if get_breakdown_fn:
             self.create_leaderboard_with_breakdown(
-                by_lines,
-                f'{username} - Language Leaderboard by Lines of Code (with Top Contributing Repos)',
-                'leaderboard_by_lines.png',
-                'Lines of Code',
+                by_bytes,
+                f'{username} - Language Leaderboard by Bytes of Code (with Top Contributing Repos)',
+                'leaderboard_by_bytes.png',
+                'Bytes of Code',
                 get_breakdown_fn,
                 top_repos_count
             )
         else:
             self.create_leaderboard(
-                by_lines,
-                f'{username} - Language Leaderboard by Lines of Code',
-                'leaderboard_by_lines.png',
-                'Lines of Code'
+                by_bytes,
+                f'{username} - Language Leaderboard by Bytes of Code',
+                'leaderboard_by_bytes.png',
+                'Bytes of Code'
             )
 
         self.create_leaderboard(
@@ -345,7 +345,7 @@ class Visualizer:
         )
 
     def create_bar_charts(self, username: str, by_repos: List[Tuple[str, int]],
-                         by_lines: List[Tuple[str, int]],
+                         by_bytes: List[Tuple[str, int]],
                          by_weighted: List[Tuple[str, float]]):
         self._create_vertical_bar(
             by_repos,
@@ -354,10 +354,10 @@ class Visualizer:
             'Repository Count'
         )
         self._create_vertical_bar(
-            by_lines,
-            f'{username} - Languages by Lines of Code',
-            'bar_by_lines.png',
-            'Lines of Code'
+            by_bytes,
+            f'{username} - Languages by Bytes of Code',
+            'bar_by_bytes.png',
+            'Bytes of Code'
         )
         self._create_vertical_bar(
             by_weighted,
@@ -417,7 +417,7 @@ class Visualizer:
         print(f"Saved: {output_path}")
 
     def create_horizontal_bar_charts(self, username: str, by_repos: List[Tuple[str, int]],
-                                     by_lines: List[Tuple[str, int]],
+                                     by_bytes: List[Tuple[str, int]],
                                      by_weighted: List[Tuple[str, float]]):
         self._create_simple_horizontal_bar(
             by_repos,
@@ -426,10 +426,10 @@ class Visualizer:
             'Repository Count'
         )
         self._create_simple_horizontal_bar(
-            by_lines,
-            f'{username} - Languages by Lines of Code',
-            'horizontal_bar_by_lines.png',
-            'Lines of Code'
+            by_bytes,
+            f'{username} - Languages by Bytes of Code',
+            'horizontal_bar_by_bytes.png',
+            'Bytes of Code'
         )
         self._create_simple_horizontal_bar(
             by_weighted,
@@ -502,7 +502,7 @@ class Visualizer:
         print(f"Saved: {output_path}")
 
     def create_pie_charts(self, username: str, by_repos: List[Tuple[str, int]],
-                         by_lines: List[Tuple[str, int]],
+                         by_bytes: List[Tuple[str, int]],
                          by_weighted: List[Tuple[str, float]],
                          donut: bool = False):
         chart_type = 'donut' if donut else 'pie'
@@ -513,9 +513,9 @@ class Visualizer:
             donut
         )
         self._create_pie_chart(
-            by_lines,
-            f'{username} - Languages by Lines of Code',
-            f'{chart_type}_by_lines.png',
+            by_bytes,
+            f'{username} - Languages by Bytes of Code',
+            f'{chart_type}_by_bytes.png',
             donut
         )
         self._create_pie_chart(

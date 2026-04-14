@@ -30,3 +30,4 @@ venv.bak/
 output/
 .DS_Store
 config.json
+test_loc.py

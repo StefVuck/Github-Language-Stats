@@ -47,6 +47,12 @@ if [ "$DARK_MODE" = "true" ]; then
     DARK_MODE_BOOL="true"
 fi
 
+# Build optional LOC flag
+LOC_FLAG=""
+if [ "$USE_LOC" = "true" ]; then
+    LOC_FLAG="--loc"
+fi
+
 # Create config.json
 cat >/action/config.json <<EOF
 {
@@ -71,7 +77,8 @@ python /action/action_main.py \
     --types $VISUALIZATION_TYPES \
     --config /action/config.json \
     --output "$OUTPUT_PATH" \
-    --top-repos "$TOP_REPOS_COUNT"
+    --top-repos "$TOP_REPOS_COUNT" \
+    $LOC_FLAG
 
 echo "Visualizations generated successfully"
 

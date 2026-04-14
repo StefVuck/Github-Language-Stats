@@ -51,6 +51,11 @@ inputs:
     required: false
     default: "false"
 
+  use_loc:
+    description: "Count actual lines of code by shallow cloning repos. Slower but more accurate than byte counts."
+    required: false
+    default: "false"
+
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -64,3 +69,4 @@ runs:
     TOP_REPOS_COUNT: ${{ inputs.top_repos_count }}
     COMMIT_MESSAGE: ${{ inputs.commit_message }}
     DARK_MODE: ${{ inputs.dark_mode }}
+    USE_LOC: ${{ inputs.use_loc }}

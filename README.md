@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: StefVuck/Github-Language-Stats@v1.1.0
+      - uses: StefVuck/Github-Language-Stats@v1.2.0
         with:
           github_token: ${{ secrets.STATS_TOKEN }}
           visualization_types: "leaderboard"
@@ -60,7 +60,7 @@ jobs:
 ### 4. Add to README
 
 ```markdown
-![Language Stats](stats/leaderboard_by_lines.png)
+![Language Stats](stats/leaderboard_by_bytes.png)
 ```
 
 ## Examples
@@ -70,10 +70,10 @@ jobs:
 Shows top languages with contribution breakdown from your top repositories.
 
 **Light Mode:**
-![Leaderboard Light](examples/light-filtered/leaderboard_by_lines.png)
+![Leaderboard Light](examples/light-filtered/leaderboard_by_bytes.png)
 
 **Dark Mode:**
-![Leaderboard Dark](examples/dark-filtered/leaderboard_by_lines.png)
+![Leaderboard Dark](examples/dark-filtered/leaderboard_by_bytes.png)
 
 ### Bar Charts
 
@@ -101,25 +101,26 @@ Shows top languages with contribution breakdown from your top repositories.
 
 ### With vs Without Language Filtering
 
-**Excluding HTML/CSS (Filtered by Lines):**
-![Filtered](examples/light-filtered/leaderboard_by_lines.png)
+**Excluding HTML/CSS:**
+![Filtered](examples/light-filtered/leaderboard_by_bytes.png)
 
-**Including All Languages (by Lines):**
-![All Languages](examples/light-all/leaderboard_by_lines.png)
+**Including All Languages:**
+![All Languages](examples/light-all/leaderboard_by_bytes.png)
 
 ## Configuration
 
-| Input                 | Description                             | Default                      |
-| --------------------- | --------------------------------------- | ---------------------------- |
-| `github_token`        | Personal Access Token with `repo` scope | Required                     |
-| `visualization_types` | Types to generate                       | `leaderboard bar pie`        |
-| `output_path`         | Output directory                        | `github-stats`               |
-| `exclude_repos`       | Comma-separated repos to skip           | `''`                         |
-| `include_forks`       | Include forked repos                    | `false`                      |
-| `exclude_languages`   | Comma-separated languages to skip       | `HTML,CSS`                   |
-| `top_repos_count`     | Repos shown in leaderboard              | `5`                          |
-| `commit_message`      | Git commit message                      | `Update language statistics` |
-| `dark_mode`           | Enable dark mode theme                  | `false`                      |
+| Input                 | Description                                                           | Default                      |
+| --------------------- | --------------------------------------------------------------------- | ---------------------------- |
+| `github_token`        | Personal Access Token with `repo` scope                               | Required                     |
+| `visualization_types` | Types to generate                                                     | `leaderboard bar pie`        |
+| `output_path`         | Output directory                                                      | `github-stats`               |
+| `exclude_repos`       | Comma-separated repos to skip                                         | `''`                         |
+| `include_forks`       | Include forked repos                                                  | `false`                      |
+| `exclude_languages`   | Comma-separated languages to skip                                     | `HTML,CSS`                   |
+| `top_repos_count`     | Repos shown in leaderboard breakdown                                  | `5`                          |
+| `commit_message`      | Git commit message                                                    | `Update language statistics` |
+| `dark_mode`           | Enable dark mode theme                                                | `false`                      |
+| `use_loc`             | Count actual lines of code by cloning repos. Slower but more accurate.| `false`                      |
 
 ## Visualization Types
 
@@ -134,13 +135,13 @@ Shows top languages with contribution breakdown from your top repositories.
 Each type generates 3 files:
 
 - `*_by_repos.png` - Sorted by repository count
-- `*_by_lines.png` - Sorted by lines of code
-- `*_by_weighted.png` - Balanced ranking
+- `*_by_bytes.png` - Sorted by code volume (bytes from GitHub API, or lines of code with `use_loc: 'true'`)
+- `*_by_weighted.png` - Balanced ranking combining repos and volume
 
 ## Advanced Configuration
 
 ```yaml
-- uses: StefVuck/Github-Language-Stats@v1.1.0
+- uses: StefVuck/Github-Language-Stats@v1.2.0
   with:
     github_token: ${{ secrets.STATS_TOKEN }}
     visualization_types: "leaderboard bar pie donut"
@@ -150,6 +151,7 @@ Each type generates 3 files:
     exclude_languages: "HTML,CSS,Markdown"
     top_repos_count: "10"
     dark_mode: "true"
+    use_loc: "true"
 ```
 
 ## Troubleshooting
@@ -167,10 +169,15 @@ Ensure your workflow has `contents: write` permission and the output directory i
 ## Local Development
 
 ```bash
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 cp config.example.json config.json
 # Edit config.json with your token
 python main.py --types leaderboard bar pie --dark-mode
+
+# Use actual lines of code instead of byte counts (slower)
+python main.py --types leaderboard --loc
 ```
 
 ## License
