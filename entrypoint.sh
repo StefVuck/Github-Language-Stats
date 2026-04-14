@@ -87,6 +87,7 @@ if [ -n "$(git status --porcelain)" ]; then
     echo "Committing changes..."
     git add "$OUTPUT_PATH"/*.png
     git commit -m "$COMMIT_MESSAGE"
+    git pull --rebase
     git push
     echo "Changes committed and pushed"
 else
