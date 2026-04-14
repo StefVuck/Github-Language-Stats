@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: stefvuck/github-profile-language-analytics@v1.1.0
+      - uses: StefVuck/Github-Language-Stats@v1.1.0
         with:
           github_token: ${{ secrets.STATS_TOKEN }}
           visualization_types: "leaderboard"
@@ -140,7 +140,7 @@ Each type generates 3 files:
 ## Advanced Configuration
 
 ```yaml
-- uses: stefvuck/github-profile-language-analytics@v1
+- uses: StefVuck/Github-Language-Stats@v1.1.0
   with:
     github_token: ${{ secrets.STATS_TOKEN }}
     visualization_types: "leaderboard bar pie donut"
