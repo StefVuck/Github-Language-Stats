@@ -11,7 +11,7 @@ from PIL import Image
 
 
 class Visualizer:
-    def __init__(self, output_dir: str = 'output', dark_mode: bool = False):
+    def __init__(self, output_dir: str = 'output', dark_mode: bool = False, use_loc: bool = False):
         self.output_dir = output_dir
         self.badge_cache_dir = os.path.join(output_dir, '.badge_cache')
         os.makedirs(output_dir, exist_ok=True)
@@ -19,6 +19,8 @@ class Visualizer:
         self.badge_cache = {}
         self.languages = self._load_languages()
         self.dark_mode = dark_mode
+        self.volume_label = 'Lines of Code' if use_loc else 'Bytes of Code'
+        self.volume_suffix = 'lines' if use_loc else 'bytes'
         self._setup_modern_style()
 
     def _setup_modern_style(self):
@@ -323,18 +325,18 @@ class Visualizer:
         if get_breakdown_fn:
             self.create_leaderboard_with_breakdown(
                 by_bytes,
-                f'{username} - Language Leaderboard by Bytes of Code (with Top Contributing Repos)',
-                'leaderboard_by_bytes.png',
-                'Bytes of Code',
+                f'{username} - Language Leaderboard by {self.volume_label} (with Top Contributing Repos)',
+                f'leaderboard_by_{self.volume_suffix}.png',
+                self.volume_label,
                 get_breakdown_fn,
                 top_repos_count
             )
         else:
             self.create_leaderboard(
                 by_bytes,
-                f'{username} - Language Leaderboard by Bytes of Code',
-                'leaderboard_by_bytes.png',
-                'Bytes of Code'
+                f'{username} - Language Leaderboard by {self.volume_label}',
+                f'leaderboard_by_{self.volume_suffix}.png',
+                self.volume_label
             )
 
         self.create_leaderboard(
@@ -355,9 +357,9 @@ class Visualizer:
         )
         self._create_vertical_bar(
             by_bytes,
-            f'{username} - Languages by Bytes of Code',
-            'bar_by_bytes.png',
-            'Bytes of Code'
+            f'{username} - Languages by {self.volume_label}',
+            f'bar_by_{self.volume_suffix}.png',
+            self.volume_label
         )
         self._create_vertical_bar(
             by_weighted,
@@ -427,9 +429,9 @@ class Visualizer:
         )
         self._create_simple_horizontal_bar(
             by_bytes,
-            f'{username} - Languages by Bytes of Code',
-            'horizontal_bar_by_bytes.png',
-            'Bytes of Code'
+            f'{username} - Languages by {self.volume_label}',
+            f'horizontal_bar_by_{self.volume_suffix}.png',
+            self.volume_label
         )
         self._create_simple_horizontal_bar(
             by_weighted,
@@ -514,8 +516,8 @@ class Visualizer:
         )
         self._create_pie_chart(
             by_bytes,
-            f'{username} - Languages by Bytes of Code',
-            f'{chart_type}_by_bytes.png',
+            f'{username} - Languages by {self.volume_label}',
+            f'{chart_type}_by_{self.volume_suffix}.png',
             donut
         )
         self._create_pie_chart(

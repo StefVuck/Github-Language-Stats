@@ -37,7 +37,7 @@ class GitHubClient:
             print(f"Error fetching languages for {repo.name}: {e}")
             return {}
 
-    def get_loc_stats(self, repo) -> Dict[str, int]:
+    def get_loc_stats(self, repo, excluded_languages: set = None) -> Dict[str, int]:
         clone_url = f"https://x-access-token:{self.token}@github.com/{repo.full_name}.git"
         tmp_dir = tempfile.mkdtemp()
         try:
@@ -46,7 +46,7 @@ class GitHubClient:
                 check=True,
                 capture_output=True,
             )
-            return count_loc(tmp_dir)
+            return count_loc(tmp_dir, excluded_languages)
         except subprocess.CalledProcessError as e:
             print(f"Error cloning {repo.name}: {e.stderr.decode().strip()}")
             return {}

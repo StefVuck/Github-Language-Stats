@@ -60,7 +60,7 @@ jobs:
 ### 4. Add to README
 
 ```markdown
-![Language Stats](stats/leaderboard_by_bytes.png)
+![Language Stats](stats/leaderboard_by_lines.png)
 ```
 
 ## Examples
@@ -70,10 +70,10 @@ jobs:
 Shows top languages with contribution breakdown from your top repositories.
 
 **Light Mode:**
-![Leaderboard Light](examples/light-filtered/leaderboard_by_bytes.png)
+![Leaderboard Light](examples/light-filtered/leaderboard_by_lines.png)
 
 **Dark Mode:**
-![Leaderboard Dark](examples/dark-filtered/leaderboard_by_bytes.png)
+![Leaderboard Dark](examples/dark-filtered/leaderboard_by_lines.png)
 
 ### Bar Charts
 
@@ -102,10 +102,10 @@ Shows top languages with contribution breakdown from your top repositories.
 ### With vs Without Language Filtering
 
 **Excluding HTML/CSS:**
-![Filtered](examples/light-filtered/leaderboard_by_bytes.png)
+![Filtered](examples/light-filtered/leaderboard_by_lines.png)
 
 **Including All Languages:**
-![All Languages](examples/light-all/leaderboard_by_bytes.png)
+![All Languages](examples/light-all/leaderboard_by_lines.png)
 
 ## Configuration
 

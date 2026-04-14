@@ -90,7 +90,14 @@ FILENAME_MAP = {
 SKIP_DIRS = {
     'node_modules', 'vendor', '.git', '__pycache__', 'dist', 'build',
     '.tox', 'venv', '.venv', 'env', '.env', 'target', 'out', '.next',
-    '.nuxt', 'coverage', '.cache', 'bower_components',
+    '.nuxt', 'coverage', '.cache', 'bower_components', 'output',
+}
+
+# Pure data/config/markup formats that are never meaningfully "code".
+# HTML, CSS etc. are intentionally excluded from this list — they are
+# legitimate languages that users may want to track.
+NON_CODE_LANGUAGES = {
+    'Markdown', 'MDX', 'YAML', 'TOML', 'JSON', 'XML', 'TeX', 'Batchfile',
 }
 
 
@@ -105,8 +112,9 @@ def _count_lines(filepath: str) -> int:
         return 0
 
 
-def count_loc(repo_path: str) -> Dict[str, int]:
+def count_loc(repo_path: str, excluded_languages: set = None) -> Dict[str, int]:
     counts: Dict[str, int] = defaultdict(int)
+    skip = NON_CODE_LANGUAGES | (excluded_languages or set())
 
     for root, dirs, files in os.walk(repo_path):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
@@ -117,7 +125,7 @@ def count_loc(repo_path: str) -> Dict[str, int]:
                 ext = os.path.splitext(filename)[1].lower()
                 language = EXTENSION_MAP.get(ext)
 
-            if language is None:
+            if language is None or language in skip:
                 continue
 
             filepath = os.path.join(root, filename)

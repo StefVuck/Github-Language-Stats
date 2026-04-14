@@ -99,7 +99,7 @@ def main():
     for i, repo in enumerate(repos, 1):
         privacy_indicator = " [Private]" if client.is_repo_private(repo) else ""
         print(f"  [{i}/{len(repos)}] Processing: {repo.name}{privacy_indicator}")
-        languages = get_stats(repo)
+        languages = get_stats(repo, set(excluded_languages)) if args.loc else get_stats(repo)
         if args.loc and not languages:
             print(f"    Warning: LOC count failed for {repo.name}, falling back to bytes")
             languages = client.get_language_stats(repo)
@@ -121,7 +121,7 @@ def main():
     print(f"  Top language by weighted: {top_by_weighted}")
 
     print(f"\nCreating visualizations (types: {', '.join(args.types)})...")
-    visualizer = Visualizer(args.output, dark_mode=args.dark_mode)
+    visualizer = Visualizer(args.output, dark_mode=args.dark_mode, use_loc=args.loc)
 
     for viz_type in args.types:
         if viz_type == 'leaderboard':
