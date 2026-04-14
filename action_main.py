@@ -116,7 +116,8 @@ def main():
     print(f"  Top language by weighted: {top_by_weighted}")
 
     print(f"\nCreating visualizations (types: {', '.join(args.types)})...")
-    visualizer = Visualizer(args.output, dark_mode=dark_mode, use_loc=args.loc)
+    visualizer = Visualizer(args.output, dark_mode=dark_mode, use_loc=args.loc,
+                            badge_cache_dir='/action/.badge_cache')
 
     for viz_type in args.types:
         if viz_type == 'leaderboard':

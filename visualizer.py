@@ -11,9 +11,10 @@ from PIL import Image
 
 
 class Visualizer:
-    def __init__(self, output_dir: str = 'output', dark_mode: bool = False, use_loc: bool = False):
+    def __init__(self, output_dir: str = 'output', dark_mode: bool = False, use_loc: bool = False,
+                 badge_cache_dir: str = None):
         self.output_dir = output_dir
-        self.badge_cache_dir = os.path.join(output_dir, '.badge_cache')
+        self.badge_cache_dir = badge_cache_dir or os.path.join(output_dir, '.badge_cache')
         os.makedirs(output_dir, exist_ok=True)
         os.makedirs(self.badge_cache_dir, exist_ok=True)
         self.badge_cache = {}
