@@ -31,3 +31,4 @@ output/
 .DS_Store
 config.json
 test_loc.py
+._bridge_cache/
