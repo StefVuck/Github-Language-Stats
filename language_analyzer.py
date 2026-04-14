@@ -1,6 +1,8 @@
 from typing import Dict, List, Tuple, Optional
 from collections import defaultdict
 
+from loc_counter import NON_CODE_LANGUAGES
+
 
 class LanguageAnalyzer:
     def __init__(self, excluded_languages: Optional[List[str]] = None,
@@ -8,7 +10,7 @@ class LanguageAnalyzer:
         self.language_bytes = defaultdict(int)
         self.language_repos = defaultdict(set)
         self.language_repo_bytes = defaultdict(lambda: defaultdict(int))
-        self.excluded_languages = set(excluded_languages or [])
+        self.excluded_languages = NON_CODE_LANGUAGES | set(excluded_languages or [])
         self.hide_private_repo_names = hide_private_repo_names
         self.private_repos = set()
 

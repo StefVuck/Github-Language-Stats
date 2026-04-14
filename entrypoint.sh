@@ -72,6 +72,11 @@ echo "Output path: $OUTPUT_PATH"
 # Pull latest before generating so the subsequent push is not rejected
 git pull --rebase
 
+# Ensure badge cache is gitignored in the user's repo
+if ! grep -qF "$OUTPUT_PATH/.badge_cache" .gitignore 2>/dev/null; then
+    echo "$OUTPUT_PATH/.badge_cache/" >> .gitignore
+fi
+
 # Create output directory in workspace
 mkdir -p "$OUTPUT_PATH"
 
